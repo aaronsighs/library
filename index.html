@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="public/css/index.css">
+    </head>
+    <body>
+        <div class="top">
+        <h1>Library</h1> //add a logo
+        //book count
+        </div>
+
+
+        <hr>
+
+        <div class="side-banner hidden">
+        <form>
+            <label name="title">title</label>
+            <input name="title" type="text" required>
+            <label name="author">author</label>
+            <input name="author" type="text">
+            <label name="cover-art">cover art</label>
+            <input name="cover-art" type="text">
+            <label name="pages">pages</label>
+            <input name="pages" type="number" min="1">
+            <input name="read" type="checkbox">
+
+            <label name="quote">Favorite Quote</label>
+            <textarea></textarea cols=5>
+            <button class="add-btn">Add</button>
+
+        </form>
+
+    </div>
+
+    <!-- <div class="side-banner-small"></div> -->
+    <div class="side-banner-btn"><div class="btn">+</div></div>
+    <div id="book-shelf">
+
+        <div class="book">
+            <div class="book-wrapper">
+                
+                <p>title</p>
+                <p>author</p>
+                <div class="progress-bar hidden"></div>
+
+                <div class="book-cnt">
+                0/255
+                </div>
+                <div class="progress-bar"></div>           
+            
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+        <script src="app.js" async defer></script>
+    </body>
+</html>
