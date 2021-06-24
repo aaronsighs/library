@@ -3,8 +3,7 @@
 
 
 let storage = window.localStorage;
-
-let myLibary = JSON.parse(storage.getItem("myBookLibary"))
+let myLibary = JSON.parse(storage.getItem("myBookLibary") || "[]")
 
 
 sideBtn = document.querySelector(".side-banner-btn")
