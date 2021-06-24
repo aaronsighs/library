@@ -1,66 +1,62 @@
 
 
-let myLibary = []
 
 
-storage = window.localStorage;
-storage.clear()
+let storage = window.localStorage;
+
+let myLibary = JSON.parse(storage.getItem("myBookLibary"))
+
 
 sideBtn = document.querySelector(".side-banner-btn")
 sideForm = document.querySelector(".side-banner")
 
 
 
-class book{
-    constructor(title,author,cover,pages,read){
-
-
-        this.read = read ? true:false
-        this.title = title;
-        this.author = author;
-        this.cover = cover;
-        this.pages = pages;
-        this.curPage = this.read ? pages:0;
-        this.id = Date.now()
-
-    }
-        
-}
 
 const Book = {
     
     init : function(title,author,cover,pages,read){
 
-        console.log(read,"here")
-
         this.read = read ? true:false
         this.title = title;
         this.author = author;
         this.cover = cover;
         this.pages = pages;
         this.curPage = this.read ? pages:0;
-        this.id = Date.now()
-
-        
-        
-
-
+        this.id = String(Date.now());
         return this
+    },
 
+    changePage : function(newPage){
+        if (newPage > this.pages || newPage < 0){
+            return false
+        }
+        this.curPage = newPage
+        if (!this.read && Number(this.pages) === Number(this.curPage)){
+            this.read = true;
+        }else if (this.read && this.pages!=this.curPage){
+            this.read = false;
+        }
+        return true
+
+    },
+    toggleRead : function(){
+        this.read = !this.read;
+        this.changePage((this.read ? 1:0) * this.pages);
     }
+
 
 }
 
 
-for(var i=0, len=storage.length; i<len; i++) {
-    var key = localStorage.key(i);
-    var value = JSON.parse(localStorage.getItem(key));
 
-    myLibary.push(value)
-    console.log(value.title)
-    drawBook(value)
 
-    
+myLibary.forEach(book=>drawBook(book));
+
+updateStats()
+
+const cat ={
+
 }
 
 
@@ -73,21 +69,19 @@ function addBookToLibrary(data){
     let currBook = Object.create(Book).init(data.get("title"),
                         data.get("author"),
                         data.get("cover-art"),
-                        data.get("pages"),
+                        Number(data.get("pages")),
                         data.get("read")==="on"
     );
+    currBook.changePage(currBook.curPage);
 
-
-
-    
+   
+    drawBook(currBook)
     myLibary.push(currBook)
 
-    drawBook(currBook)
-    storage.setItem(String(currBook.id),JSON.stringify(currBook))
-    let k = JSON.parse(storage.getItem(String(currBook.id)))
-    console.log(k.id)
-    //setRead(currBook,currBook.curPage)
-    //updateStats()
+    storage.setItem("myBookLibary",JSON.stringify(myLibary));
+    updateStats();
+    
+
     }
 
 
@@ -105,11 +99,33 @@ function drawBook(currBook){
 }
 
 
+function updateStatsDict(){
+    let pagesRead = 0;
+    let booksRead = 0;
+    let booksStarted = 0;
+    let bookCount = storage.length;
+    for(var i=0, len=bookCount; i<len; i++) {
+        let book = JSON.parse(localStorage.getItem(localStorage.key(i)))
+        pagesRead += book.curPage;
+        booksRead += book.read ? 1:0;
+        booksStarted += book.curPage > 0 ? 1:0;
+
+    }
+    let booksUnf = bookCount - booksRead;
+    document.querySelectorAll("label")[4].innerText = `Pages Read: ${pagesRead}`
+    document.querySelectorAll("label")[1].innerText = `Books Read: ${booksRead}`
+    document.querySelectorAll("label")[0].innerText = `Book Count: ${bookCount}`
+    document.querySelectorAll("label")[2].innerText = `Books Unfinished: ${booksUnf}`
+    document.querySelectorAll("label")[3].innerText = `Books Started: ${booksStarted}`
+
+}
+
 function updateStats(){
+
     document.querySelectorAll("label")[4].innerText = `Pages Read: ${getPagesRead()}`
     document.querySelectorAll("label")[1].innerText = `Books Read: ${getBooksRead()}`
     document.querySelectorAll("label")[0].innerText = `Book Count: ${myLibary.length}`
-    document.querySelectorAll("label")[2].innerText = `Books Unfinished: ${myLibary.length - getBooksRead()}`
+    document.querySelectorAll("label")[2].innerText = `Books Unfinished: ${myLibary.length-getBooksRead()}`
     document.querySelectorAll("label")[3].innerText = `Books Started: ${getBooksStarted()}`
 
 }
@@ -133,17 +149,20 @@ function getBookIndex(id){
     return myLibary.findIndex( o=>o.id===id)
 }
 
-function deleteBook(id){
-    let index = myLibary.findIndex( o=>o.id===id)
-    document.querySelector("#book-shelf").removeChild(document.querySelectorAll(".book")[index])
-    myLibary = [...myLibary.filter((o,idx)=>index!==idx)]
-
+function deleteBookDict(id){
+    document.querySelector("#book-shelf").removeChild(document.querySelector(`#book${id}`))
+    storage.removeItem(id)
     updateStats()
 
     
 }
 
-
+function deleteBook(id){
+    myLibary = myLibary.filter (o=>o.id!==id)
+    document.querySelector("#book-shelf").removeChild(document.querySelector(`#book${id}`))
+    storage.setItem("myBookLibary",JSON.stringify(myLibary))
+    
+}
 
 function close(){
     sideForm.classList.remove("semi-hidden")
@@ -154,14 +173,12 @@ function close(){
 }
 
 
-
-
-
 function bookLayout(currentBook){
 
 
     bk = document.createElement("div");
     bk.classList.add("book")
+    bk.id = "book"+currentBook.id
     bk.style.backgroundImage = `url("${currentBook.cover}")`
     bk.style.backgroundSize="cover";
     bk.style.backgroundRepeat="no-repeat"
@@ -170,37 +187,31 @@ function bookLayout(currentBook){
     check.classList.add("isDone")
     check.classList.add("bi")
     check.classList.add("bi-check-circle-fill")
+    if (currentBook.read){
+        check.classList.add("clicked");
+    }
     check.name = myLibary.length-1
 
     wrp = document.createElement("div")
 
     wrp.classList.add("book-wrapper")
-    bookInfo(currentBook,wrp)
+    drawBookInfo(currentBook,wrp)
 
 
 
     check.addEventListener("click", e=>{
-        if (!e.target.classList.contains("clicked")){
-
-        updatePageNum(currentBook,currentBook.pages);
+        let book = myLibary[getBookIndex(currentBook.id)]
+        Object.setPrototypeOf(book,Book)
+        book.toggleRead()
+        if (book.read){
+            updatePageNum(currentBook.id,book.pages);
         }else{
-            updatePageNum(currentBook,0)
+            updatePageNum(currentBook.id,0)
         }
         
         
 
     });
-
-
-
-
-
-
- 
-
-
-
-
     bk.append(check);
     bk.appendChild(wrp)
     return bk
@@ -228,22 +239,43 @@ function setRead(currBook,pageNum){
 
 }
 
-function updatePageNum(currBook,pageNum){
 
-    let bookNum = getBookIndex(currBook.id)
+function addPageNum(id,amount){
+    let currBook = JSON.parse(storage.getItem(id))
+    updatePageNum(currBook)
 
-    if (currBook.pages < pageNum || pageNum < 0 || pageNum === currBook.curPage){
+}
+
+function updatePageNum(id,pageNum){
+
+    let index = getBookIndex(id)
+
+    if (index<0){
         return
     }
-    currBook.curPage = pageNum;
+    let currBook = myLibary[index];
+    Object.setPrototypeOf(currBook,Book)
 
-    let prog = document.querySelectorAll(".progress-bar")[bookNum];
-    prog.style.width = `${pageNum / currBook.pages *100}%`
+    if (!currBook.changePage(pageNum)){
+        return
+    }
 
-    let pageTxt = document.querySelectorAll(".book-cnt")[bookNum]
-    pageTxt.textContent = `${pageNum}/${currBook.pages}`;
 
-    setRead(currBook,pageNum)
+    let prog = document.querySelector(`#book${id} .book-wrapper .progress .progress-bar`);
+    prog.style.width = `${currBook.curPage / currBook.pages *100}%`
+
+    let pageTxt = document.querySelector(`#book${id} .book-wrapper .book-cnt`);
+    pageTxt.textContent = `${currBook.curPage}/${currBook.pages}`;
+
+    check = document.querySelector(`#book${id} .isDone`);
+    if (currBook.read){
+        check.classList.add("clicked");
+    }else{
+        check.classList.remove("clicked");
+    }
+
+
+    storage.setItem("myBookLibary",JSON.stringify(myLibary));
 
     updateStats()
 
@@ -254,8 +286,7 @@ function updatePageNum(currBook,pageNum){
 }
 
 
-function bookInfo(currBook,wrapper){
-    // <i class="bi bi-x-circle-fill"></i>
+function drawBookInfo(currBook,wrapper){
      let del = document.createElement("i")
      del.classList.add("bi")
      del.classList.add("bi-x")
@@ -271,13 +302,15 @@ function bookInfo(currBook,wrapper){
     progress.classList.add("progress")
     progressBar = document.createElement("div")
     progressBar.classList.add("progress-bar")
+    progressBar.style.width = `${currBook.curPage / currBook.pages *100}%`
 
     btn1 = document.createElement("button")
     btn1.classList.add("add")
     btn1.textContent = "+"
     btn1.classList.add("fancy-btn")
     btn1.addEventListener('click',e=>{
-        updatePageNum(currBook,currBook.curPage+1)
+        let book = myLibary[getBookIndex(currBook.id)]
+        updatePageNum(currBook.id,book.curPage+1)
 
     })
 
@@ -287,7 +320,8 @@ function bookInfo(currBook,wrapper){
     btn2.textContent = "-"
     btn2.classList.add("fancy-btn")
     btn2.addEventListener('click',e=>{
-        updatePageNum(currBook,currBook.curPage-1)
+        let book = myLibary[getBookIndex(currBook.id)]
+        updatePageNum(currBook.id,book.curPage-1)
 
     })
 
@@ -350,17 +384,14 @@ document.querySelector(".bi-arrow-up-left-square-fill").addEventListener('click'
 sideBtn.addEventListener("click",e=>{
         sideForm.classList.add("form-in")
         sideBtn.classList.add("hidden");
-        // sideForm.classList.add("semi-hidden")
         sideForm.classList.remove("hidden");
         
 })
 
 addBtn = document.querySelector("form")
 addBtn.addEventListener("submit", e=>{
-    console.log(e)
     e.preventDefault()
     const formData = new FormData(e.target)
-    console.log(formData,formData.get("title"))
     addBookToLibrary(formData)
     
 })
