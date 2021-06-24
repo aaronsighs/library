@@ -1,21 +1,27 @@
 :root{
-    --side-bar-color:#070a5ace;
+    --side-bar-color:#070a5ab7;
 ;
 }
 
 .top{
     background-color:#edf1ee88;
     margin:0;
+    min-height:100px;
+}
+html{
+    margin:0;
+    background-color: rgb(245, 239, 239);
 }
 body{
     position: relative;
     margin:0;
-    height:100vh;
+    min-height:100vh;
+    background-color: rgb(245, 239, 239);
 }
 hr{
     margin:0;
     height:10px;
-    background-color: #c8543d5e;
+    background-color: #8400ffa2;
 }
 
 .side-banner{
@@ -27,12 +33,12 @@ hr{
     min-width:120px;
     border-right: 1px solid rgb(243, 241, 241);
     color:white;
-    z-index:50;
+    z-index:70;
 }
 
 .side-banner-btn{
     position: absolute;
-    width:2%;
+    width:8%;
     background-color: var(--side-bar-color);
     height:100%;
     left:0;
@@ -49,7 +55,15 @@ hr{
 
 }
 .side-banner form{
+    padding-top: 15px;
 
+}
+
+form i.bi-arrow-up-left-square-fill{
+    position: absolute;
+    top:5px;
+    right:5px;
+    width:5%;
 }
 
 
@@ -61,11 +75,12 @@ hr{
 
 }
 .book{
+    display: inline-block;
     position: relative;
     background-color: white;
-    width:250px;
+    width:200px;
     height:400px;
-    margin:auto;
+    margin:2%;
   background-size: cover;
   background-repeat: no-repeat;
   overflow:hidden;
@@ -75,60 +90,20 @@ hr{
 
 }
 
-.book:hover{
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.822);
-    
-}
-
-.book:hover .book-wrapper .book-cnt{
-    animation: move-pg .75s forwards .75s;
-    
-}
-
-.book .book-wrapper .book-cnt{
-    position: relative;
-
-}
 
 
-@keyframes move-pg {
-    from{
-    }
-    to{
-        transform: translateX(100px);
-        transform: translateY(290px);
-}
-}
 
-.book:hover .book-wrapper{
-    animation: show-more-info 1s forwards;
 
-}
-/* .book-wrapper:hover{
-    animation: show-more-info 1s forwards;
 
-} */
 
-@keyframes show-more-info {
-
-    from{}
-    to{
-        background-color: rgba(128, 128, 128, 0.452);
-    width:100%;
-    height:100%;
-    transform: translateY(0%);
-    border-top: 1px solid var(--side-bar-color);
-    }
-
-}
 
 .book-wrapper{
     position: relative;
-    background-color: rgba(0, 0, 0, 0.63);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.822);
+    background-color:rgba(145, 145, 145, 0.349);
     width:100%;
     margin: 0;
     height:100%;
-    transform:translateY(50%);
     text-align: center;
     color:white;
     border-top: 2px solid black;
@@ -138,6 +113,122 @@ hr{
     width:100%;
     height:100%;
 } */
+
+
+.isDone1{
+    position: absolute;
+    top:10px;
+    right:10px;
+    z-index: 50;
+    outline: 1px solid rgba(37, 235, 30, 0.589);
+    border: 1px solid rgba(37, 235, 30, 0.589);
+    padding:5px;
+    background-color: rgba(255, 248, 220, 0.808);
+    box-shadow: 1px 1px 10px white;
+
+}
+.isDone1:hover{
+    background-color: rgb(160, 233, 158);
+    box-shadow: 1px 1px 30px white;
+}
+
+
+.isDone{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    border:0px;
+    top:10px;
+    right:10px;
+    font-size: 1.1rem;
+    color:rgba(172, 172, 172, 0.849);
+    z-index: 50;
+    border-radius: 100%;
+
+}
+.isDone:hover{
+    color:rgba(238, 241, 236, 0.808);
+    z-index: 50;
+    text-shadow: 1px 1px 1px rgb(156, 156, 156);
+    transform: scale(1.25);
+    
+}
+
+
+
+.book-wrapper p{
+    min-height: 20px;
+}
+
+
+.progress-bar{
+    position: relative;
+    /* background-color:rgb(37, 235, 30); */
+    background-color: rgb(115, 255, 122);
+    height: 10px;
+    border-radius: 10px;
+    width:0%;
+}
+
+
+.sub{
+    position: absolute;
+    bottom:10px;
+    left:50px;
+    border:0px;
+    height:15px;
+    width:15px;
+    background-color: rgb(255, 255, 255);
+}
+
+.add{
+    position: absolute;
+    bottom:10px;
+    right:50px;
+    border:0px;
+    height:15px;
+    width:15px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.fancy-btn{
+    border:0px;
+    height:15px;
+    width:15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 2px;
+
+}
+
+.fancy-btn:hover{
+    background-color: rgb(236, 229, 229);
+    box-shadow: 1px 1px 2px black;
+}
+
+.fancy-btn:active{
+    background-color: rgb(180, 255, 184);
+    box-shadow: 1px 1px 5px rgb(255, 255, 255);
+}
+
+.progress{
+    position: absolute;
+    height: 10px;
+    background-color: rgba(192, 245, 196, 0.438);
+
+    box-shadow: 1px 1px 10px;
+    border-radius: 10px;
+    margin:10%;
+    width:80%;
+    bottom:20px;
+
+}
+
+.clicked{
+    color: rgb(180, 255, 184) !important;
+    transform: scale(1.25);
+}
+
+
 
 .side-banner form > *{
     display:block;
@@ -163,96 +254,6 @@ hr{
     padding:1%;
 }
 
-.slide-in{
-    animation: slide-right 1s forwards;
-}
-
-.slide-out{
-    animation:slide-left 1s forwards;
-}
-
-.form-in{
-    animation:form-right 1s forwards;
-}
-
-@keyframes slide-right {
-    from{
-        width: 2%;
-        font-size: 1.5rem;
-    }
-    to{
-        width:8%;
-        font-size: 300%;
-    }
-    
-}
-
-
-@keyframes slide-left {
-    from{
-        width: 8%;
-        font-size: 300%;
-    }
-    to{
-        width:2%;
-        font-size: 100%;
-       
-    }
-}
-
-
-@keyframes form-right {
-    from{
-
-        min-height: 100%;
-        min-width: 8%;
-        width:8%;
-
-    }
-    to{
-        max-width:25%;
-        max-height:100%;
-        min-height: 100%;
-        min-width: 25%;
-        width:25%;
-        height:100%;
-        left:0;
-}
-       
-
-    
-}
-
-
-.rotate{
-    animation: rotate90 2s;
-}
-
-@keyframes pulse {
-    from{}
-    to{
-        transform: scale(1.15);
-        color:white;
-    }
-}
-
-
-
-
-@keyFrames rotate90{
-    0%{
-        transform: rotateZ(0deg)
-    }
-    50%{
-        transform: rotateZ(90deg);
-    }
-
-    100%{
-        transform: rotateZ(90deg);
-        transform: scale(1.15);
-        color:white;
-    }
-}
 
 
 
@@ -288,9 +289,23 @@ input:focus {
 
 
 
+.bi-x{
+    position: absolute;
+    top:5px;
+    left:5px;
+    color:rgb(255, 255, 255);
+}
+.bi-x:hover{
+    transform: scale(1.5);
+    color:rgb(10, 10, 10);
+
+}
 
 
-
+img.book-logo{
+    width:50px;
+    height: 50px;
+}
 
 
 
@@ -310,5 +325,311 @@ input:focus {
     height:0;
     width:0;
     background-color: var(--side-bar-color);
+
 }
 
+
+
+
+#book-shelf{
+    margin-left:29%;
+}
+.book{
+    width:200px
+}
+
+.book .book-wrapper .book-cnt{
+    position: absolute;
+    left:70px;
+    font-size: .7rem;
+    bottom:-7px;
+
+}
+form i.bi-arrow-up-left-square-fill{
+    position: absolute;
+    top:5px;
+    right:20px;
+    font-size: 1.2rem;
+}
+.side-banner-btn{
+    width:8%;
+}
+
+.side-banner{
+    background-color: #070a5a;
+}
+
+.book:hover{
+    
+}
+
+.book:hover .book-wrapper .book-cnt{
+    
+}
+
+#stats{
+    display: block;
+    position: absolute;
+    top:-20px;
+    right:20px;
+    border: 1px solid black;
+    padding:10px 30px 0px 30px;
+    
+}
+#stats label{
+    display: block;
+    font-size: .8rem;
+    
+}
+#stats h3{
+    margin:0;
+}
+
+#stats div{
+    display:inline-block;
+}
+
+
+
+
+
+
+@media screen and (min-width:1000px){
+
+
+    .book .book-wrapper .book-cnt{
+        position: absolute;
+        left:80px;
+        text-align: center;
+        font-size: 1rem;
+        bottom:auto;
+    
+    }
+    
+
+    .progress{
+
+        width:0%;
+
+    
+    }
+
+
+    .book-wrapper{
+        background-color: rgba(0, 0, 0, 0.322);
+
+        transform:translateY(50%);
+
+    }
+
+    .book:hover{
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.822);
+        
+    }
+
+
+
+    .sub{
+        position: absolute;
+        bottom:10px;
+        left:50px;
+        border:0px;
+        height:15px;
+        width:15px;
+        background-color: rgb(255, 255, 255);
+    }
+    
+    .add{
+        position: absolute;
+        bottom:10px;
+        right:50px;
+        border:0px;
+        height:15px;
+        width:15px;
+        background-color: rgb(255, 255, 255);
+    
+    }
+
+
+
+.side-banner-btn{
+
+    width:2%;
+
+}
+
+.book{
+
+    width:250px;
+ 
+
+}
+
+#book-shelf{
+    margin-left:0%;
+}
+
+
+
+    .side-banner{
+        background-color: var(--side-bar-color);
+
+    }
+
+
+
+
+
+
+    .book:hover .book-wrapper .book-cnt{
+        animation: move-pg .75s forwards .75s;
+        
+    }
+    
+
+
+    @keyframes move-pg {
+        from{
+        }
+        to{
+            transition: bottom 1s linear;
+            bottom:-10px;
+            
+    }
+    }
+    
+    .book:hover .book-wrapper{
+        animation: show-more-info 1s forwards;
+    
+    }
+    /* .book-wrapper:hover{
+        animation: show-more-info 1s forwards;
+    
+    } */
+    
+    @keyframes show-more-info {
+    
+        from{}
+        to{
+            background-color: rgba(145, 145, 145, 0.349);
+        width:100%;
+        height:100%;
+        transform: translateY(0%);
+        border-top: 1px solid var(--side-bar-color);
+        }
+    
+    }
+    .slide-in{
+        animation: slide-right 1s forwards;
+    }
+    
+    .slide-out{
+        animation:slide-left 1s forwards;
+    }
+    
+    .form-in{
+        animation:form-right 1s forwards;
+    }
+    
+    @keyframes slide-right {
+        from{
+            width: 2%;
+            font-size: 1.5rem;
+        }
+        to{
+            width:8%;
+            font-size: 300%;
+        }
+        
+    }
+    
+    
+    @keyframes slide-left {
+        from{
+            width: 8%;
+            font-size: 300%;
+        }
+        to{
+            width:2%;
+            font-size: 100%;
+           
+        }
+    }
+    
+    
+    @keyframes form-right {
+        from{
+    
+            min-height: 100%;
+            min-width: 8%;
+            width:8%;
+    
+        }
+        to{
+            max-width:25%;
+            max-height:100%;
+            min-height: 100%;
+            min-width: 25%;
+            width:25%;
+            height:100%;
+            left:0;
+    }
+           
+    
+        
+    }
+    .book:hover .book-wrapper .progress{
+        animation: squeeze-in 1s forwards 1.35s;
+    }
+    
+    @keyframes squeeze-in {
+        0%{}
+        25%{
+            border: .1px solid rgb(255, 255, 255);
+        }
+        to{width: 80%;
+            border: 1px solid rgb(255, 255, 255);}
+    }
+    
+    
+    .rotate{
+        animation: rotate90 2s;
+    }
+    
+    .pulsing{
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0%{
+    
+        }
+        50%{
+            transform: scale(1.15);
+            color:white;
+        }
+        to{
+            transform: scale(1);
+        }
+    }
+    
+    
+    
+    
+    @keyFrames rotate90{
+        0%{
+            transform: rotateZ(0deg)
+        }
+    
+    
+        100%{
+            transform: rotateZ(90deg);
+        }
+    }
+    
+
+
+
+
+    
+}

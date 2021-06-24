@@ -6,19 +6,29 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="public/css/index.css">
     </head>
     <body>
         <div class="top">
-        <h1>Library</h1> //add a logo
-        //book count
+        <h1>Library  <img class="book-logo" src="https://www.transparentpng.com/thumb/books/blue-book-png-icon--an1pZY.png" alt="blue book png icon @transparentpng.com"></h1> 
+        <div id="stats">
+            <h3>Book Stats: </h3>
+            <label name="count">Book Count: 0 </label>
+            <label name="read">Books Read: 0 </label>
+            <label name="unf">Books unfinished: 0</label>
+            <label name="strt">Books started: 0</label>
+            <label name="pgs-read">Pages Read: 0</label>
+        </div>
         </div>
 
 
         <hr>
 
-        <div class="side-banner hidden">
+        <div class="side-banner">
         <form>
+            <i class="bi bi-arrow-up-left-square-fill"></i>
+            
             <label name="title">title</label>
             <input name="title" type="text" required>
             <label name="author">author</label>
@@ -26,7 +36,7 @@
             <label name="cover-art">cover art</label>
             <input name="cover-art" type="text">
             <label name="pages">pages</label>
-            <input name="pages" type="number" min="1">
+            <input name="pages" type="number" min="1" required max=9999>
             <input name="read" type="checkbox">
 
             <label name="quote">Favorite Quote</label>
@@ -41,20 +51,25 @@
     <div class="side-banner-btn"><div class="btn">+</div></div>
     <div id="book-shelf">
 
-        <div class="book">
+        <!-- <div class="book">
+            <i class=" isDone bi bi-check-circle-fill"></i>
             <div class="book-wrapper">
+               
                 
                 <p>title</p>
                 <p>author</p>
-                <div class="progress-bar hidden"></div>
 
-                <div class="book-cnt">
+                <p class="book-cnt">
                 0/255
-                </div>
-                <div class="progress-bar"></div>           
+                </p>
+                <button class="add fancy-btn">+</button>
+                <button class="sub fancy-btn">-</button>
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>           
             
             </div>
-        </div>
+        </div> -->
     </div>
     
     
