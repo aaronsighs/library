@@ -1,637 +1,512 @@
-:root{
-    --side-bar-color:#070a5ab7;
-;
+:root {
+    --side-bar-color: #070a5ab7;
+    ;
 }
 
-.top{
-    background-color:#edf1ee88;
-    margin:0;
-    min-height:100px;
+.top {
+    background-color: #edf1ee88;
+    margin: 0;
+    min-height: 100px;
 }
-html{
-    margin:0;
+
+html {
+    margin: 0;
     background-color: rgb(245, 239, 239);
 }
-body{
+
+body {
     position: relative;
-    margin:0;
-    min-height:100vh;
+    margin: 0;
+    min-height: 100vh;
     background-color: rgb(245, 239, 239);
 }
-hr{
-    margin:0;
-    height:10px;
+
+hr {
+    margin: 0;
+    padding: 0;
+    height: 10px;
     background-color: #8400ffa2;
+    width: 100%;
 }
 
-.side-banner{
+.side-banner {
     position: absolute;
-    width:25%;
-    height:100%;
-    left:0;
+    width: 25%;
+    height: 100%;
+    left: 0;
     background-color: var(--side-bar-color);
-    min-width:120px;
+    min-width: 120px;
     border-right: 1px solid rgb(243, 241, 241);
-    color:white;
-    z-index:70;
+    color: white;
+    z-index: 70;
 }
 
-.side-banner-btn{
+.side-banner-btn {
     position: absolute;
-    width:8%;
+    width: 8%;
     background-color: var(--side-bar-color);
-    height:100%;
-    left:0;
+    height: 100%;
+    left: 0;
     font-size: 100%;
     z-index: 50;
 }
 
-.side-banner-small{
+.side-banner-small {
     position: absolute;
-    width:1%;
-    height:100%;
-    left:0;
+    width: 1%;
+    height: 100%;
+    left: 0;
     background-color: var(--side-bar-color);
-
 }
-.side-banner form{
+
+.side-banner form {
     padding-top: 15px;
-
 }
 
-form i.bi-arrow-up-left-square-fill{
+form i.bi-arrow-up-left-square-fill {
     position: absolute;
-    top:5px;
-    right:5px;
-    width:5%;
+    top: 5px;
+    right: 5px;
+    width: 5%;
 }
 
-
-#book-shelf{
-    height:100%;
+#book-shelf {
+    height: 100%;
     background-color: rgb(245, 239, 239);
     position: relative;
-    padding:10px;
-
+    padding: 10px;
 }
-.book{
+
+.book {
     display: inline-block;
     position: relative;
     background-color: white;
-    width:200px;
-    height:400px;
-    margin:2%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow:hidden;
-  outline:1px black white;
-  box-shadow: 3px 3px 3px rgba(63, 63, 63, 0.527);
-  
-
+    width: 200px;
+    height: 400px;
+    margin: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    outline: 1px black white;
+    box-shadow: 3px 3px 3px rgba(63, 63, 63, 0.527);
 }
 
-
-
-
-
-
-
-
-.book-wrapper{
+.book-wrapper {
     position: relative;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.822);
-    background-color:rgba(145, 145, 145, 0.349);
-    width:100%;
+    background-color: rgba(145, 145, 145, 0.349);
+    width: 100%;
     margin: 0;
-    height:100%;
+    height: 100%;
     text-align: center;
-    color:white;
+    color: white;
     border-top: 2px solid black;
 }
+
+
 /* .book-wrapper:hover{
     background-color: rgba(0, 0, 0, 0.336);
     width:100%;
     height:100%;
 } */
 
-
-.isDone1{
+.isDone1 {
     position: absolute;
-    top:10px;
-    right:10px;
+    top: 10px;
+    right: 10px;
     z-index: 50;
     outline: 1px solid rgba(37, 235, 30, 0.589);
     border: 1px solid rgba(37, 235, 30, 0.589);
-    padding:5px;
+    padding: 5px;
     background-color: rgba(255, 248, 220, 0.808);
     box-shadow: 1px 1px 10px white;
-
 }
-.isDone1:hover{
+
+.isDone1:hover {
     background-color: rgb(160, 233, 158);
     box-shadow: 1px 1px 30px white;
 }
 
-
-.isDone{
+.isDone {
     position: absolute;
     background-color: rgba(255, 255, 255, 0);
-    border:0px;
-    top:10px;
-    right:10px;
+    border: 0px;
+    top: 10px;
+    right: 10px;
     font-size: 1.1rem;
-    color:rgba(172, 172, 172, 0.849);
+    color: rgba(172, 172, 172, 0.849);
     z-index: 50;
     border-radius: 100%;
-
 }
-.isDone:hover{
-    color:rgba(238, 241, 236, 0.808);
+
+.isDone:hover {
+    color: rgba(238, 241, 236, 0.808);
     z-index: 50;
     text-shadow: 1px 1px 1px rgb(156, 156, 156);
     transform: scale(1.25);
-    
 }
 
-
-
-.book-wrapper p{
+.book-wrapper p {
     min-height: 20px;
 }
 
-
-.progress-bar{
+.progress-bar {
     position: relative;
     /* background-color:rgb(37, 235, 30); */
     background-color: rgb(115, 255, 122);
     height: 10px;
     border-radius: 10px;
-    width:0%;
+    width: 0%;
 }
 
-
-.sub{
+.sub {
     position: absolute;
-    bottom:10px;
-    left:50px;
-    border:0px;
-    height:15px;
-    width:15px;
+    bottom: 10px;
+    left: 50px;
+    border: 0px;
+    height: 15px;
+    width: 15px;
     background-color: rgb(255, 255, 255);
 }
 
-.add{
+.add {
     position: absolute;
-    bottom:10px;
-    right:50px;
-    border:0px;
-    height:15px;
-    width:15px;
+    bottom: 10px;
+    right: 50px;
+    border: 0px;
+    height: 15px;
+    width: 15px;
     background-color: rgb(255, 255, 255);
-
 }
 
-.fancy-btn{
-    border:0px;
-    height:15px;
-    width:15px;
+.fancy-btn {
+    border: 0px;
+    height: 15px;
+    width: 15px;
     background-color: rgb(255, 255, 255);
     border-radius: 2px;
-
 }
 
-.fancy-btn:hover{
+.fancy-btn:hover {
     background-color: rgb(236, 229, 229);
     box-shadow: 1px 1px 2px black;
 }
 
-.fancy-btn:active{
+.fancy-btn:active {
     background-color: rgb(180, 255, 184);
     box-shadow: 1px 1px 5px rgb(255, 255, 255);
 }
 
-.progress{
+.progress {
     position: absolute;
     height: 10px;
     background-color: rgba(192, 245, 196, 0.438);
-
     box-shadow: 1px 1px 10px;
     border-radius: 10px;
-    margin:10%;
-    width:80%;
-    bottom:20px;
-
+    margin: 10%;
+    width: 80%;
+    bottom: 20px;
 }
 
-.clicked{
+.clicked {
     color: rgb(180, 255, 184) !important;
     transform: scale(1.25);
 }
 
-
-
-.side-banner form > *{
-    display:block;
+.side-banner form>* {
+    display: block;
     align-content: center;
-    width:80%;
+    width: 80%;
     margin-left: 5%;
     margin-top: 2%;
 }
 
-.add-btn{
+.add-btn {
     box-shadow: 0px 0px 2px cornsilk;
     padding: 10px;
-    width:50%;
-    margin:25%;
+    width: 50%;
+    margin: 25%;
 }
 
-
-.side-banner-btn .btn{
-    color:#c8553d;
+.side-banner-btn .btn {
+    color: #c8553d;
     position: absolute;
-    top:50%;
-    left:25%;
-    padding:1%;
+    top: 50%;
+    left: 25%;
+    padding: 1%;
 }
 
-
-
-
-
-form input[type=text],form input[type=number]{
-    border:0px;
-    padding:5px;
+form input[type=text],
+form input[type=number] {
+    border: 0px;
+    padding: 5px;
     box-shadow: -1px 1px 1px brown;
- 
-
 }
 
 form input::selection {
-    outline:0px;
- 
-
+    outline: 0px;
 }
-
-
-
-
 
 input:focus {
     color: red;
-    outline: 2px solid orange;  
-   }
-   input.visited {
-     color: red;
-    outline: 2px solid orange;  
-   }
+    outline: 2px solid orange;
+}
 
+input.visited {
+    color: red;
+    outline: 2px solid orange;
+}
 
-
-
-
-.bi-x{
+.bi-x {
     position: absolute;
-    top:5px;
-    left:5px;
-    color:rgb(255, 255, 255);
+    top: 12px;
+    left: 8px;
+    color: rgb(255, 255, 255);
 }
-.bi-x:hover{
+
+.bi-x:hover {
     transform: scale(1.5);
-    color:rgb(10, 10, 10);
-
+    color: rgb(10, 10, 10);
 }
 
-
-img.book-logo{
-    width:50px;
+img.book-logo {
+    width: 50px;
     height: 50px;
 }
 
-
-
-
-
-
-.hidden{
-    visibility:  hidden !important;
-    max-width:0 !important;
-    max-height:0 !important;
-
+.hidden {
+    visibility: hidden !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
 }
-.semi-hidden{
+
+.semi-hidden {
     position: absolute;
-    max-width:0;
-    max-height:0;
-    height:0;
-    width:0;
+    max-width: 0;
+    max-height: 0;
+    height: 0;
+    width: 0;
     background-color: var(--side-bar-color);
-
 }
 
-
-
-
-#book-shelf{
-    margin-left:29%;
-}
-.book{
-    width:200px
+#book-shelf {
+    margin-left: 29%;
 }
 
-.book .book-wrapper .book-cnt{
+.book {
+    width: 200px
+}
+
+.book .book-wrapper .book-cnt {
     position: absolute;
-    left:70px;
+    left: 70px;
+    width: 60px;
     font-size: .7rem;
-    bottom:-7px;
-
+    bottom: -7px;
 }
-form i.bi-arrow-up-left-square-fill{
+
+form i.bi-arrow-up-left-square-fill {
     position: absolute;
-    top:5px;
-    right:20px;
+    top: 5px;
+    right: 20px;
     font-size: 1.2rem;
 }
-.side-banner-btn{
-    width:8%;
+
+.side-banner-btn {
+    width: 8%;
 }
 
-.side-banner{
+.side-banner {
     background-color: #070a5a;
 }
 
-.book:hover{
-    
-}
+.book:hover {}
 
-.book:hover .book-wrapper .book-cnt{
-    
-}
+.book:hover .book-wrapper .book-cnt {}
 
-#stats{
+#stats {
     display: block;
     position: absolute;
-    top:-20px;
-    right:20px;
+    top: -20px;
+    right: 2px;
     border: 1px solid black;
-    padding:10px 30px 0px 30px;
-    
+    padding: 10px 30px 0px 30px;
 }
-#stats label{
+
+#stats label {
     display: block;
     font-size: .8rem;
-    
-}
-#stats h3{
-    margin:0;
 }
 
-#stats div{
-    display:inline-block;
+#stats h3 {
+    margin: 0;
 }
 
+#stats div {
+    display: inline-block;
+}
 
-
-
-
-
-
-
-@media screen and (min-width:1000px){
-
-
-    .book .book-wrapper .book-cnt{
+@media screen and (min-width:1000px) {
+    #stats {
+        right: 20px;
+    }
+    .book .book-wrapper .book-cnt {
+        text-align: center;
         position: absolute;
-        left:80px;
         text-align: center;
         font-size: 1rem;
-        bottom:auto;
-    
+        bottom: auto;
+        left: 75px;
+        width: 100px;
     }
-    
-
-    .progress{
-
-        width:0%;
-
-    
+    .progress {
+        width: 0%;
     }
-
-
-    .book-wrapper{
+    .book-wrapper {
         background-color: rgba(0, 0, 0, 0.322);
-
-        transform:translateY(50%);
-
+        transform: translateY(50%);
     }
-
-    .book:hover{
+    .book:hover {
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.822);
-        
     }
-
-
-
-    .sub{
+    .sub {
         position: absolute;
-        bottom:10px;
-        left:50px;
-        border:0px;
-        height:15px;
-        width:15px;
+        bottom: 10px;
+        left: 50px;
+        border: 0px;
+        height: 15px;
+        width: 15px;
         background-color: rgb(255, 255, 255);
     }
-    
-    .add{
+    .add {
         position: absolute;
-        bottom:10px;
-        right:50px;
-        border:0px;
-        height:15px;
-        width:15px;
+        bottom: 10px;
+        right: 50px;
+        border: 0px;
+        height: 15px;
+        width: 15px;
         background-color: rgb(255, 255, 255);
-    
+        text-align: center;
     }
-
-
-
-.side-banner-btn{
-
-    width:2%;
-
-}
-
-.book{
-
-    width:250px;
- 
-
-}
-
-#book-shelf{
-    margin-left:0%;
-}
-
-
-
-    .side-banner{
+    .side-banner-btn {
+        width: 2%;
+    }
+    .book {
+        width: 250px;
+    }
+    #book-shelf {
+        margin-left: 0%;
+    }
+    .side-banner {
         background-color: var(--side-bar-color);
-
     }
-
-
-
-
-
-
-    .book:hover .book-wrapper .book-cnt{
+    .book:hover .book-wrapper .book-cnt {
         animation: move-pg .75s forwards .75s;
-        
     }
-    
-
-
     @keyframes move-pg {
-        from{
-        }
-        to{
+        from {}
+        to {
             transition: bottom 1s linear;
-            bottom:-10px;
-            
+            bottom: -10px;
+        }
     }
-    }
-    
-    .book:hover .book-wrapper{
+    .book:hover .book-wrapper {
         animation: show-more-info 1s forwards;
-    
     }
     /* .book-wrapper:hover{
         animation: show-more-info 1s forwards;
     
     } */
-    
     @keyframes show-more-info {
-    
-        from{}
-        to{
+        from {}
+        to {
             background-color: rgba(145, 145, 145, 0.349);
-        width:100%;
-        height:100%;
-        transform: translateY(0%);
-        border-top: 1px solid var(--side-bar-color);
+            width: 100%;
+            height: 100%;
+            transform: translateY(0%);
+            border-top: 1px solid var(--side-bar-color);
         }
-    
     }
-    .slide-in{
+    .slide-in {
         animation: slide-right 1s forwards;
     }
-    
-    .slide-out{
-        animation:slide-left 1s forwards;
+    .slide-out {
+        animation: slide-left 1s forwards;
     }
-    
-    .form-in{
-        animation:form-right 1s forwards;
+    .form-in {
+        animation: form-right 1s forwards;
     }
-    
     @keyframes slide-right {
-        from{
+        from {
             width: 2%;
             font-size: 1.5rem;
         }
-        to{
-            width:8%;
-            font-size: 300%;
-        }
-        
-    }
-    
-    
-    @keyframes slide-left {
-        from{
+        to {
             width: 8%;
             font-size: 300%;
         }
-        to{
-            width:2%;
+    }
+    @keyframes slide-left {
+        from {
+            width: 8%;
+            font-size: 300%;
+        }
+        to {
+            width: 2%;
             font-size: 100%;
-           
         }
     }
-    
-    
     @keyframes form-right {
-        from{
-    
+        from {
             min-height: 100%;
             min-width: 8%;
-            width:8%;
-    
+            width: 8%;
         }
-        to{
-            max-width:25%;
-            max-height:100%;
+        to {
+            max-width: 25%;
+            max-height: 100%;
             min-height: 100%;
             min-width: 25%;
-            width:25%;
-            height:100%;
-            left:0;
+            width: 25%;
+            height: 100%;
+            left: 0;
+        }
     }
-           
-    
-        
-    }
-    .book:hover .book-wrapper .progress{
+    .book:hover .book-wrapper .progress {
         animation: squeeze-in 1s forwards 1.35s;
     }
-    
     @keyframes squeeze-in {
-        0%{}
-        25%{
+        0% {}
+        25% {
             border: .1px solid rgb(255, 255, 255);
         }
-        to{width: 80%;
-            border: 1px solid rgb(255, 255, 255);}
+        to {
+            width: 80%;
+            border: 1px solid rgb(255, 255, 255);
+        }
     }
-    
-    
-    .rotate{
+    .rotate {
         animation: rotate90 2s;
     }
-    
-    .pulsing{
+    .pulsing {
         animation: pulse 2s infinite;
     }
-    
     @keyframes pulse {
-        0%{
-    
-        }
-        50%{
+        0% {}
+        50% {
             transform: scale(1.15);
-            color:white;
+            color: white;
         }
-        to{
+        to {
             transform: scale(1);
         }
     }
-    
-    
-    
-    
-    @keyFrames rotate90{
-        0%{
+    @keyFrames rotate90 {
+        0% {
             transform: rotateZ(0deg)
         }
-    
-    
-        100%{
+        100% {
             transform: rotateZ(90deg);
         }
     }
-    
-
-
-
-
-    
 }
