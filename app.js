@@ -1,17 +1,5 @@
-let storage = window.localStorage;
-let myLibary = JSON.parse(storage.getItem("myBookLibary") || "[]")
-
-
-sideBtn = document.querySelector(".side-banner-btn")
-sideForm = document.querySelector(".side-banner")
-
-
-
-
-const Book = {
-
-    init: function(title, author, cover, pages, read) {
-
+class Book {
+    constructor(title, author, cover, pages, read) {
         this.read = read ? true : false
         this.title = title;
         this.author = author;
@@ -19,10 +7,10 @@ const Book = {
         this.pages = pages;
         this.curPage = this.read ? pages : 0;
         this.id = String(Date.now());
-        return this
-    },
 
-    changePage: function(newPage) {
+    }
+
+    changePage(newPage) {
         if (newPage > this.pages || newPage < 0) {
             return false
         }
@@ -34,14 +22,40 @@ const Book = {
         }
         return true
 
-    },
-    toggleRead: function() {
+    }
+    toggleRead() {
         this.read = !this.read;
         this.changePage((this.read ? 1 : 0) * this.pages);
     }
 
+    toJson() {
+        const jsonObject = {}
+        const self = this;
+        Object.keys(this).forEach(function(k) {
+            jsonObject[k] = self[k]
+        });
+        Object.keys(Object.getPrototypeOf(this)).forEach(function(k) {
+            jsonObject[k] = self[k];
+        });
 
+        return JSON.stringify(jsonObject);
+
+    }
 }
+
+
+
+
+let storage = window.localStorage;
+let myLibary = JSON.parse(storage.getItem("myBookLibary") || "[]");
+
+
+sideBtn = document.querySelector(".side-banner-btn")
+sideForm = document.querySelector(".side-banner")
+
+
+
+
 
 
 
@@ -50,9 +64,6 @@ myLibary.forEach(book => drawBook(book));
 
 updateStats()
 
-const cat = {
-
-}
 
 
 
@@ -61,13 +72,14 @@ const cat = {
 
 function addBookToLibrary(data) {
 
-    let currBook = Object.create(Book).init(data.get("title"),
+    let currBook = new Book(data.get("title"),
         data.get("author"),
         data.get("cover-art"),
         Number(data.get("pages")),
         data.get("read") === "on"
     );
     currBook.changePage(currBook.curPage);
+    console.log(currBook.__proto__)
 
 
     drawBook(currBook)
@@ -196,7 +208,7 @@ function bookLayout(currentBook) {
 
     check.addEventListener("click", e => {
         let book = myLibary[getBookIndex(currentBook.id)]
-        Object.setPrototypeOf(book, Book)
+        currBook.__proto__ = new Book();
         book.toggleRead()
         if (book.read) {
             updatePageNum(currentBook.id, book.pages);
@@ -249,7 +261,8 @@ function updatePageNum(id, pageNum) {
         return
     }
     let currBook = myLibary[index];
-    Object.setPrototypeOf(currBook, Book)
+
+    currBook.__proto__ = new Book();
 
     if (!currBook.changePage(pageNum)) {
         return
